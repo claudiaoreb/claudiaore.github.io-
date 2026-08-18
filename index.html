@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claudia Oré — Comunicadora Audiovisual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F5F0;
+      --ink: #1C1C1A;
+      --mid: #6B6860;
+      --accent: #8B7355;
+      --line: #E0DDD8;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 60px;
+      background: rgba(247,245,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-color: var(--line); }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 8vw, 100px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      max-width: 480px;
+      color: var(--mid);
+      font-size: 15px;
+      line-height: 1.8;
+      border-left: 1px solid var(--accent);
+      padding-left: 20px;
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .hero-cta:hover { color: var(--accent); border-color: var(--accent); }
+    .hero-cta svg { transition: transform 0.2s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    .hero-scroll {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      writing-mode: vertical-rl;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 60px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 120px 60px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+      max-width: 80px;
+    }
+
+    /* SOBRE MÍ */
+    #sobre {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .sobre-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+    .sobre-left h2 em { font-style: italic; color: var(--accent); }
+
+    .sobre-left p {
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 40px;
+    }
+
+    .skill-item {
+      background: var(--white);
+      padding: 24px;
+    }
+
+    .skill-item h4 {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .skill-item p {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* PROYECTOS */
+    #proyectos { background: var(--cream); }
+
+    .proyectos-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+
+    .proyectos-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .proyectos-header h2 em { font-style: italic; color: var(--accent); }
+
+    .proyecto-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .proyecto-card {
+      background: var(--white);
+      padding: 40px;
+      position: relative;
+      transition: background 0.25s;
+      cursor: pointer;
+    }
+    .proyecto-card:hover { background: #F0EDE8; }
+
+    .proyecto-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .proyecto-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .proyecto-card p {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .proyecto-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tool-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+    }
+
+    .proyecto-link {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .proyecto-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    .confidencial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      background: var(--cream);
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+    }
+
+    /* SERVICIOS */
+    #servicios {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    #servicios .section-label { color: #A89478; }
+    #servicios .section-label::after { background: #3a3a38; }
+
+    #servicios h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 60px;
+    }
+    #servicios h2 em { font-style: italic; color: #A89478; }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #2a2a28;
+    }
+
+    .servicio-item {
+      background: var(--ink);
+      padding: 40px 32px;
+      border-top: 1px solid #2a2a28;
+      transition: background 0.2s;
+    }
+    .servicio-item:hover { background: #222220; }
+
+    .servicio-num {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #A89478;
+      margin-bottom: 20px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .servicio-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .servicio-item p {
+      font-size: 13px;
+      color: #8a8a88;
+      line-height: 1.7;
+    }
+
+    /* CONTACTO */
+    #contacto {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contacto-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .contacto-left h2 em { font-style: italic; color: var(--accent); }
+
+    .contacto-left p {
+      color: var(--mid);
+      margin-bottom: 40px;
+    }
+
+    .contacto-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contacto-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--ink);
+      padding: 20px 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contacto-link:hover { border-color: var(--accent); background: #FBF9F6; }
+
+    .contacto-link-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contacto-link-value {
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .cv-download {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--cream);
+      padding: 20px 32px;
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      transition: background 0.2s;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .cv-download:hover { background: #2e2e2c; }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 60px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--mid);
+    }
+
+    /* PASSWORD MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28,28,26,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--white);
+      padding: 48px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--mid);
+      line-height: 1;
+    }
+
+    .modal h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .modal p {
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    .modal input {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--cream);
+      padding: 14px 16px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .modal input:focus { border-color: var(--accent); }
+
+    .modal button.submit {
+      width: 100%;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      padding: 14px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .modal button.submit:hover { background: #2e2e2c; }
+
+    .modal-error {
+      font-size: 12px;
+      color: #B85450;
+      margin-top: 10px;
+      display: none;
+    }
+    .modal-error.show { display: block; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      #hero { padding: 0 24px 60px; }
+      .hero-scroll { display: none; }
+      #sobre, #contacto { grid-template-columns: 1fr; gap: 48px; }
+      .proyecto-grid { grid-template-columns: 1fr; }
+      .servicios-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Claudia Oré</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">Comunicadora Audiovisual · Lima, Perú</p>
+  <h1 class="hero-name">Claudia<br><em>Oré Bautista</em></h1>
+  <p class="hero-desc">
+    Edición de video, producción audiovisual e inteligencia artificial aplicada al contenido.
+    Trabajo con marcas e infoproductores para convertir ideas en piezas que venden.
+  </p>
+  <a href="#proyectos" class="hero-cta">
+    Ver proyectos
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="sobre-left">
+    <div class="section-label">Sobre mí</div>
+    <h2>Imagen que <em>comunica,</em><br>resultado que convierte</h2>
+    <p>Soy comunicadora audiovisual egresada de Toulouse Lautrec, con experiencia en producción, edición de video y generación de contenido con IA.</p>
+    <p>En el último año he trabajado con emprendimientos y marcas en EE.UU. y Latinoamérica, especializándome en VSL para infoproductores y contenido visual generado con inteligencia artificial.</p>
+    <p>Hablo inglés avanzado y gestiono proyectos de forma remota con equipos internacionales.</p>
+  </div>
+  <div class="sobre-right">
+    <div class="skills-grid">
+      <div class="skill-item">
+        <h4>Edición de video</h4>
+        <p>Premiere Pro · After Effects · DaVinci Resolve · CapCut</p>
+      </div>
+      <div class="skill-item">
+        <h4>Motion & Color</h4>
+        <p>Corrección de color · Motion graphics · Animación 2D</p>
+      </div>
+      <div class="skill-item">
+        <h4>IA & Generación</h4>
+        <p>HeyGen · Runway · Kling · MidJourney · Veo · Higgsfield</p>
+      </div>
+      <div class="skill-item">
+        <h4>Diseño</h4>
+        <p>Illustrator · Photoshop · Canva · Identidad visual</p>
+      </div>
+      <div class="skill-item">
+        <h4>Producción</h4>
+        <p>Dirección · Fotografía · Iluminación · Sonido</p>
+      </div>
+      <div class="skill-item">
+        <h4>Estrategia</h4>
+        <p>Meta Ads · Redes sociales · Storytelling · UGC</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="section-label">Proyectos</div>
+  <div class="proyectos-header">
+    <h2>Trabajo <em>seleccionado</em></h2>
+  </div>
+  <div class="proyecto-grid">
+
+    <div class="proyecto-card">
+      <p class="proyecto-tag">VSL · Infoproducto</p>
+      <h3>La Llamativa</h3>
+      <p>Edición de videos de venta para infoproductores. Narrativa visual orientada a conversión, motion graphics y postproducción completa.</p>
+      <div class="proyecto-tools">
+        <span class="tool-tag">Premiere Pro</span>
+        <span class="tool-tag">After Effects</span>
+        <span class="tool-tag">VSL</span>
+      </div>
+      <span class="confidencial-badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1"/></svg>
+        Disponible bajo solicitud
+      </span>
+    </div>
+
+    <div class="proyecto-card">
+      <p class="proyecto-tag">Video con IA · Comercial</p>
+      <h3>Cliente en Boston, USA</h3>
+      <p>Producción de imágenes y videos comerciales con IA generativa. Prompt engineering avanzado, workflows automatizados y postproducción en DaVinci.</p>
+      <div class="proyecto-tools">
+        <span class="tool-tag">DaVinci Resolve</span>
+        <span class="tool-tag">HeyGen</span>
+        <span class="tool-tag">Runway</span>
+        <span class="tool-tag">IA generativa</span>
+      </div>
+      <span class="confidencial-badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1"/></svg>
+        Disponible bajo solicitud
+      </span>
+    </div>
+
+    <div class="proyecto-card">
+      <p class="proyecto-tag">Transmedia · Documental</p>
+      <h3>Agachaditos</h3>
+      <p>Proyecto transmedia sobre comida callejera peruana. Lideré producción, presupuesto, grabación y distribución digital. +57,000 views en TikTok y +1,000 seguidores en IG en menos de una semana.</p>
+      <div class="proyecto-tools">
+        <span class="tool-tag">Premiere Pro</span>
+        <span class="tool-tag">After Effects</span>
+        <span class="tool-tag">Instagram</span>
+        <span class="tool-tag">TikTok</span>
+      </div>
+      <a href="https://www.behance.net/claudiaor" target="_blank" class="proyecto-link">
+        Ver en Behance
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <div class="proyecto-card">
+      <p class="proyecto-tag">Diseño · Identidad visual</p>
+      <h3>El Charrúa</h3>
+      <p>Diseño de piezas gráficas para restaurante uruguayo: menú, vales de consumo y comunicación de marca alineada con la identidad del local.</p>
+      <div class="proyecto-tools">
+        <span class="tool-tag">Illustrator</span>
+        <span class="tool-tag">Photoshop</span>
+        <span class="tool-tag">Identidad visual</span>
+      </div>
+      <a href="https://www.behance.net/claudiaor" target="_blank" class="proyecto-link">
+        Ver en Behance
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-label">Servicios</div>
+  <h2>Lo que <em>ofrezco</em></h2>
+  <div class="servicios-grid">
+
+    <div class="servicio-item">
+      <p class="servicio-num">01</p>
+      <h3>Edición de Video VSL</h3>
+      <p>Videos de venta (VSL) para infoproductores y lanzamientos digitales. Montaje, color, motion graphics y storytelling orientado a conversión.</p>
+    </div>
+
+    <div class="servicio-item">
+      <p class="servicio-num">02</p>
+      <h3>Contenido con IA</h3>
+      <p>Generación de imágenes y video comercial con herramientas de IA generativa. Prompt engineering estratégico según el brief del proyecto.</p>
+    </div>
+
+    <div class="servicio-item">
+      <p class="servicio-num">03</p>
+      <h3>Producción Audiovisual</h3>
+      <p>Dirección, grabación y postproducción completa. Corrección de color profesional en DaVinci Resolve o Premiere Pro.</p>
+    </div>
+
+    <div class="servicio-item">
+      <p class="servicio-num">04</p>
+      <h3>Motion Graphics</h3>
+      <p>Animaciones, intros, subtítulos animados y elementos gráficos en After Effects para potenciar cualquier pieza audiovisual.</p>
+    </div>
+
+    <div class="servicio-item">
+      <p class="servicio-num">05</p>
+      <h3>Diseño Gráfico</h3>
+      <p>Piezas gráficas para redes sociales, identidad visual, materiales de marca y contenido para campañas digitales.</p>
+    </div>
+
+    <div class="servicio-item">
+      <p class="servicio-num">06</p>
+      <h3>UGC & Contenido Social</h3>
+      <p>Contenido profesional para Instagram, TikTok y Meta Ads. Estrategia visual alineada con objetivos de crecimiento y conversión.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-left">
+    <div class="section-label">Contacto</div>
+    <h2>Trabajemos <em>juntos</em></h2>
+    <p>¿Tienes un proyecto en mente? Escríbeme y conversamos sobre cómo puedo ayudarte.</p>
+    <div class="contacto-links">
+      <a href="mailto:claudiaore.info@gmail.com" class="contacto-link">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="1" stroke="#8B7355" stroke-width="1.2"/><path d="M2 5l7 5 7-5" stroke="#8B7355" stroke-width="1.2"/></svg>
+        <div>
+          <span class="contacto-link-label">Email</span>
+          <span class="contacto-link-value">claudiaore.info@gmail.com</span>
+        </div>
+      </a>
+      <a href="tel:+51960446424" class="contacto-link">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 2h3l1.5 4-2 1.2c.9 1.9 2.3 3.3 4.2 4.2L13 9.5l4 1.5v3c0 1.1-.9 2-2 2C7.2 16 2 10.8 2 4c0-1.1.9-2 2-2h1z" stroke="#8B7355" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        <div>
+          <span class="contacto-link-label">WhatsApp / Teléfono</span>
+          <span class="contacto-link-value">(+51) 960 446 424</span>
+        </div>
+      </a>
+      <a href="https://www.behance.net/claudiaor" target="_blank" class="contacto-link">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="6" height="10" rx="1" stroke="#8B7355" stroke-width="1.2"/><rect x="10" y="4" width="6" height="10" rx="1" stroke="#8B7355" stroke-width="1.2"/></svg>
+        <div>
+          <span class="contacto-link-label">Portafolio</span>
+          <span class="contacto-link-value">behance.net/claudiaor</span>
+        </div>
+      </a>
+      <a href="Claudia_Ore_CV_2026.docx" download class="cv-download">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M3 12h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Descargar CV
+      </a>
+    </div>
+  </div>
+  <div class="contacto-right">
+    <!-- espacio visual -->
+    <div style="border: 1px solid var(--line); padding: 48px; background: var(--white);">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--ink); line-height:1.5; margin-bottom:24px; font-style:italic;">
+        "Traduzco objetivos en contenido visual sin sacrificar calidad creativa."
+      </p>
+      <p style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);">Claudia Oré Bautista</p>
+      <p style="font-size:12px; color:var(--mid);">Lima, Perú · Disponible para trabajo remoto</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Claudia Oré Bautista</p>
+  <p>Lima, Perú · Disponible para proyectos remotos</p>
+</footer>
+
+<!-- MODAL CONTRASEÑA -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>Proyecto protegido</h3>
+    <p>Este trabajo tiene acuerdo de confidencialidad. Escríbeme y te envío la contraseña de acceso.</p>
+    <input type="password" id="passwordInput" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPassword()" />
+    <button class="submit" onclick="checkPassword()">Acceder</button>
+    <p class="modal-error" id="modalError">Contraseña incorrecta. Contáctame para solicitarla.</p>
+  </div>
+</div>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Modal
+  let currentPassword = '';
+  const passwords = {
+    'vsl-llamativa': 'llamativa2026',
+    'ai-boston': 'boston2026',
+  };
+  let currentProject = '';
+
+  function openModal(project) {
+    currentProject = project;
+    document.getElementById('modalOverlay').classList.add('active');
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('modalError').classList.remove('show');
+    setTimeout(() => document.getElementById('passwordInput').focus(), 100);
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+
+  function checkPassword() {
+    const val = document.getElementById('passwordInput').value;
+    if (val === passwords[currentProject]) {
+      closeModal();
+      alert('✓ Acceso concedido. En una web real, aquí abriría el video protegido.');
+    } else {
+      document.getElementById('modalError').classList.add('show');
+      document.getElementById('passwordInput').value = '';
+    }
+  }
+
+  document.getElementById('modalOverlay').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+
+  // Hacer que las tarjetas confidenciales abran el modal
+  document.querySelectorAll('.confidencial-badge').forEach((badge, i) => {
+    const projects = ['vsl-llamativa', 'ai-boston'];
+    badge.style.cursor = 'pointer';
+    badge.addEventListener('click', () => openModal(projects[i]));
+  });
+</script>
+</body>
+</html>
