@@ -1,883 +1,816 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claudia Oré — Comunicadora Audiovisual</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claudia Oré — Comunicadora Audiovisual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --ink:#100D08;--carbon:#2C2218;--tierra:#6B4F2A;
+  --gold:#B8914A;--gold-l:rgba(184,145,74,.18);
+  --lino:#DDD8CE;--cream:#F5F0E8;--paper:#FEFCF9;
+  --muted:#8B7355;--white:#FFFFFF;
+  --glass:rgba(255,255,255,.09);
+  --glass-b:rgba(255,255,255,.14);
+  --glass-dark:rgba(20,15,8,.55);
+  --r-sm:10px;--r-md:20px;--r-lg:32px;--r-xl:48px;--r-full:999px;
+  --sh-sm:0 2px 14px rgba(44,34,24,.07);
+  --sh-md:0 8px 36px rgba(44,34,24,.11);
+  --sh-lg:0 24px 64px rgba(44,34,24,.14);
+  --sh-glass:0 8px 32px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.18);
+  --bebas:'Bebas Neue',sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+}
+body{background:var(--paper);color:var(--carbon);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-    :root {
-      --cream: #F7F5F0;
-      --ink: #1C1C1A;
-      --mid: #6B6860;
-      --accent: #8B7355;
-      --line: #E0DDD8;
-      --white: #ffffff;
-    }
+/* ── NAV GLASS ── */
+nav{
+  position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.55rem .55rem .55rem 1.5rem;
+  background:var(--glass-dark);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-radius:var(--r-full);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:var(--sh-glass);
+  width:min(880px,calc(100vw - 2rem));gap:1rem;
+}
+.nav-logo{font-family:var(--bebas);font-size:1.1rem;letter-spacing:.12em;color:var(--cream);text-decoration:none;flex-shrink:0}
+.nav-links{display:flex;gap:.2rem;list-style:none;flex:1;justify-content:center}
+.nav-links a{
+  font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);text-decoration:none;
+  padding:.4rem .85rem;border-radius:var(--r-full);
+  transition:all .2s var(--ease);
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav-cta{
+  font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink);background:var(--cream);
+  padding:.55rem 1.25rem;border-radius:var(--r-full);
+  text-decoration:none;flex-shrink:0;
+  transition:all .2s var(--ease);
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+.nav-cta:hover{background:#fff;transform:translateY(-1px)}
 
-    html { scroll-behavior: smooth; }
+/* ── HERO ── */
+.hero{
+  background:var(--ink);min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 3rem 4rem;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 60% at 80% 20%,rgba(184,145,74,.07) 0%,transparent 65%),
+    radial-gradient(ellipse 40% 40% at 10% 80%,rgba(107,79,42,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-top{
+  position:absolute;top:6rem;left:3rem;right:3rem;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.hero-avail{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);
+  background:rgba(184,145,74,.1);
+  border:1px solid rgba(184,145,74,.3);
+  padding:.4rem 1.1rem;border-radius:var(--r-full);
+  backdrop-filter:blur(8px);
+}
+.hero-avail::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.hero-meta{font-size:.68rem;letter-spacing:.08em;color:rgba(255,255,255,.3);text-align:right;line-height:1.7}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
+.hero-name{
+  font-family:var(--bebas);
+  font-size:clamp(5.5rem,17vw,17rem);
+  line-height:.86;letter-spacing:.01em;color:var(--cream);
+  position:relative;z-index:1;margin-bottom:0;
+}
+.hero-name .outline{
+  display:block;color:transparent;
+  -webkit-text-stroke:1.5px rgba(245,240,232,.55);
+}
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 60px;
-      background: rgba(247,245,240,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s;
-    }
-    nav.scrolled { border-color: var(--line); }
+.hero-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:2.5rem;padding-top:1.75rem;
+  border-top:1px solid rgba(255,255,255,.07);gap:2rem;
+}
+.hero-desc{font-size:.88rem;color:rgba(255,255,255,.42);max-width:360px;line-height:1.8;font-weight:300}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end;max-width:300px}
+.chip{
+  font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  padding:.38rem .9rem;border-radius:var(--r-full);
+  border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);
+  transition:all .2s;
+}
+.chip.on{border-color:rgba(184,145,74,.45);color:var(--gold);background:rgba(184,145,74,.08)}
 
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-      text-decoration: none;
-    }
+/* ── MARQUEE ── */
+.marquee-wrap{
+  background:var(--carbon);padding:1rem 0;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.marquee-track{
+  display:flex;gap:0;
+  animation:scroll 28s linear infinite;
+  width:max-content;
+}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  display:flex;align-items:center;gap:1.5rem;
+  padding:0 2.5rem;white-space:nowrap;
+  font-family:var(--bebas);font-size:1rem;letter-spacing:.12em;
+  color:rgba(255,255,255,.35);
+}
+.marquee-item span{color:var(--gold);font-size:.7rem}
 
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
+/* ── TOOLS STRIP ── */
+.tools{
+  background:var(--ink);padding:1.1rem 3rem;
+  display:flex;align-items:center;gap:1.5rem;
+  overflow-x:auto;scrollbar-width:none;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.tools::-webkit-scrollbar{display:none}
+.tl{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex-shrink:0;padding-right:1.5rem;border-right:1px solid rgba(255,255,255,.07)}
+.ti{display:flex;align-items:center;gap:.45rem;flex-shrink:0}
+.tic{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;color:#fff}
+.tin{font-size:.68rem;color:rgba(255,255,255,.35);white-space:nowrap}
 
-    .nav-links a {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mid);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--ink); }
+/* ── SECTIONS ── */
+.sec{padding:6rem 3rem}
+.sl{font-size:.62rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.st{font-family:var(--bebas);font-size:clamp(2.6rem,5vw,4.5rem);letter-spacing:.02em;color:var(--carbon);line-height:1;margin-bottom:1rem}
+.sr{width:100%;height:1px;background:var(--lino);margin-bottom:3.5rem}
 
-    /* HERO */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 60px 80px;
-      position: relative;
-      overflow: hidden;
-    }
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:4rem}
+.sc{
+  background:var(--white);border:1px solid var(--lino);
+  border-radius:var(--r-lg);padding:1.75rem 1.5rem;
+  box-shadow:var(--sh-sm);transition:all .25s var(--ease);
+}
+.sc:hover{box-shadow:var(--sh-md);transform:translateY(-3px)}
+.sn{font-family:var(--bebas);font-size:2.6rem;color:var(--carbon);letter-spacing:.02em;line-height:1}
+.sl2{font-size:.72rem;color:var(--muted);margin-top:.35rem;line-height:1.4}
 
-    .hero-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
+/* ── PORTFOLIO GRID – imagen full con título encima ── */
+.portfolio-sec{background:var(--cream)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.pc{
+  border-radius:var(--r-xl);overflow:hidden;cursor:pointer;
+  position:relative;
+  box-shadow:var(--sh-sm);
+  transition:all .35s var(--ease);
+}
+.pc:hover{box-shadow:var(--sh-lg);transform:translateY(-5px)}
+.pc.wide{grid-column:span 2}
+.pc.tall{grid-row:span 2}
+.pthumb{
+  width:100%;height:100%;min-height:280px;
+  position:relative;overflow:hidden;
+}
+.pc.wide .pthumb{min-height:320px}
+.pthumb img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s var(--ease);
+  filter:saturate(.85) brightness(.9);
+}
+.pc:hover .pthumb img{transform:scale(1.06);filter:saturate(1) brightness(.85)}
+.poverlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(16,13,8,.82) 0%,rgba(16,13,8,.2) 50%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1.5rem 1.75rem;
+}
+.pnum-badge{
+  position:absolute;top:1.25rem;left:1.5rem;
+  font-family:var(--bebas);font-size:.8rem;letter-spacing:.1em;
+  color:var(--gold);
+  background:rgba(16,13,8,.5);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(184,145,74,.3);
+  padding:.25rem .65rem;border-radius:var(--r-full);
+}
+.lock-pill{
+  position:absolute;top:1.25rem;right:1.5rem;
+  font-size:.6rem;letter-spacing:.08em;
+  color:rgba(255,255,255,.7);
+  background:rgba(16,13,8,.5);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.15);
+  padding:.25rem .7rem;border-radius:var(--r-full);
+}
+.ptype-label{
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:.35rem;
+}
+.ptitle{
+  font-family:var(--bebas);font-size:1.55rem;letter-spacing:.02em;
+  color:#fff;line-height:1.05;margin-bottom:.45rem;
+}
+.ptags{display:flex;gap:.35rem;flex-wrap:wrap}
+.ptag{
+  font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.22rem .6rem;border-radius:var(--r-full);
+  background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);
+  backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.15);
+}
 
-    .hero-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(56px, 8vw, 100px);
-      font-weight: 300;
-      line-height: 1.0;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      margin-bottom: 32px;
-    }
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;gap:1rem}
+.ec{
+  background:var(--white);border:1px solid var(--lino);
+  border-radius:var(--r-xl);padding:2rem 2.25rem;
+  box-shadow:var(--sh-sm);transition:all .25s var(--ease);
+}
+.ec:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
+.ec-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.65rem}
+.ec-role{font-family:var(--bebas);font-size:1.25rem;letter-spacing:.03em;color:var(--carbon)}
+.ec-date{
+  font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);white-space:nowrap;
+  background:rgba(184,145,74,.09);border:1px solid rgba(184,145,74,.25);
+  padding:.28rem .75rem;border-radius:var(--r-full);flex-shrink:0;
+}
+.ec-co{font-size:.82rem;font-weight:500;color:var(--tierra);margin-bottom:.75rem}
+.ec-list{list-style:none;display:flex;flex-direction:column;gap:.38rem}
+.ec-list li{font-size:.82rem;color:var(--muted);line-height:1.6;padding-left:1rem;position:relative}
+.ec-list li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:.5rem;top:.2em}
 
-    .hero-name em {
-      font-style: italic;
-      color: var(--accent);
-    }
+/* ── SKILLS ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-big{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.6rem,2.8vw,2.3rem);color:var(--carbon);line-height:1.4;margin-bottom:1.75rem}
+.about-big em{font-style:normal;color:var(--gold)}
+.about-p{font-size:.88rem;color:var(--tierra);line-height:1.8;margin-bottom:1.1rem}
+.about-btn{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:.75rem;
+  font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--white);background:var(--carbon);
+  padding:.7rem 1.5rem;border-radius:var(--r-full);
+  text-decoration:none;transition:all .2s var(--ease);
+  box-shadow:var(--sh-sm);
+}
+.about-btn:hover{background:var(--tierra);transform:translateY(-2px);box-shadow:var(--sh-md)}
 
-    .hero-desc {
-      max-width: 480px;
-      color: var(--mid);
-      font-size: 15px;
-      line-height: 1.8;
-      border-left: 1px solid var(--accent);
-      padding-left: 20px;
-      margin-bottom: 48px;
-    }
+/* Skills con glass pill groups */
+.skill-groups{display:flex;flex-direction:column;gap:1.5rem}
+.sg-title{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.65rem}
+.sg-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.sg-pill{
+  font-size:.75rem;padding:.45rem 1rem;
+  border-radius:var(--r-full);
+  border:1px solid var(--lino);
+  color:var(--tierra);background:var(--white);
+  box-shadow:var(--sh-sm);
+  transition:all .2s var(--ease);
+}
+.sg-pill:hover{background:var(--cream);border-color:var(--gold-l);transform:translateY(-1px);box-shadow:var(--sh-md)}
+.sg-pill.gold{background:rgba(184,145,74,.07);border-color:rgba(184,145,74,.35);color:var(--tierra)}
 
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 4px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .hero-cta:hover { color: var(--accent); border-color: var(--accent); }
-    .hero-cta svg { transition: transform 0.2s; }
-    .hero-cta:hover svg { transform: translateX(4px); }
+/* ── CONTACT DARK ── */
+.contact-sec{background:var(--ink);position:relative;overflow:hidden}
+.contact-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(184,145,74,.06) 0%,transparent 70%);pointer-events:none}
+.contact-sec .sl{color:var(--gold)}
+.contact-sec .st{color:var(--cream)}
+.contact-sec .sr{background:rgba(255,255,255,.08)}
+.contact-inner{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:3rem;position:relative;z-index:1}
+.c-big{font-family:var(--bebas);font-size:clamp(2.2rem,6vw,5.5rem);letter-spacing:.02em;color:var(--cream);line-height:.95}
+.c-big a{color:inherit;text-decoration:none;border-bottom:2px solid var(--gold);transition:color .2s;padding-bottom:2px}
+.c-big a:hover{color:var(--gold)}
+.c-links{display:flex;flex-direction:column;gap:.6rem;align-items:flex-end}
+/* Glass buttons para contact */
+.c-btn{
+  font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);text-decoration:none;
+  padding:.5rem 1.2rem;border-radius:var(--r-full);
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 4px 16px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.12);
+  transition:all .2s var(--ease);
+}
+.c-btn:hover{background:rgba(255,255,255,.13);color:#fff;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.18)}
 
-    .hero-scroll {
-      position: absolute;
-      right: 60px;
-      bottom: 80px;
-      writing-mode: vertical-rl;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mid);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hero-scroll::after {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 60px;
-      background: var(--accent);
-      opacity: 0.5;
-    }
+/* ── FOOTER ── */
+footer{background:var(--ink);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05)}
+.fn{font-family:var(--bebas);font-size:.95rem;letter-spacing:.1em;color:rgba(255,255,255,.2)}
+.fc{font-size:.68rem;color:rgba(255,255,255,.14);letter-spacing:.05em}
 
-    /* SECTIONS */
-    section {
-      padding: 120px 60px;
-    }
+/* ── MODALS ── */
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(10,8,5,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:1.5rem}
+.overlay.open{display:flex}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 
-    .section-label {
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 60px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line);
-      max-width: 80px;
-    }
+/* Glass modal pw */
+.pw-box{
+  background:rgba(254,252,249,.92);
+  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+  border-radius:var(--r-xl);
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 32px 80px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.6);
+  width:100%;max-width:420px;padding:2.75rem;
+  position:relative;animation:up .3s var(--ease);
+}
+.pw-close{position:absolute;top:1.25rem;right:1.5rem;background:none;border:none;font-size:1.1rem;color:var(--muted);cursor:pointer;transition:color .2s}
+.pw-close:hover{color:var(--carbon)}
+.pw-title{font-family:var(--bebas);font-size:1.5rem;letter-spacing:.04em;color:var(--carbon);margin-bottom:.4rem}
+.pw-sub{font-size:.82rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.6}
+.pw-input{
+  width:100%;padding:.9rem 1.1rem;
+  border:1.5px solid var(--lino);
+  background:rgba(245,240,232,.7);
+  border-radius:var(--r-md);
+  font-family:var(--sans);font-size:.95rem;color:var(--carbon);
+  outline:none;letter-spacing:.2em;transition:border-color .2s;
+}
+.pw-input:focus{border-color:var(--gold)}
+.pw-btn{
+  width:100%;margin-top:.75rem;padding:.9rem;
+  background:var(--carbon);color:var(--cream);
+  border:none;cursor:pointer;border-radius:var(--r-full);
+  font-family:var(--sans);font-size:.75rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  transition:all .2s var(--ease);
+  box-shadow:var(--sh-sm);
+}
+.pw-btn:hover{background:var(--tierra);transform:translateY(-1px);box-shadow:var(--sh-md)}
+.pw-err{font-size:.78rem;color:#c0392b;margin-top:.6rem;display:none}
+.pw-err.show{display:block}
 
-    /* SOBRE MÍ */
-    #sobre {
-      background: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
+/* Detail modal */
+.db{
+  background:var(--paper);border-radius:var(--r-xl);
+  border:1px solid rgba(221,216,206,.6);
+  width:100%;max-width:840px;max-height:90vh;
+  overflow-y:auto;position:relative;animation:up .3s var(--ease);
+  box-shadow:0 32px 80px rgba(0,0,0,.3);
+}
+.db::-webkit-scrollbar{width:4px}
+.db::-webkit-scrollbar-track{background:transparent}
+.db::-webkit-scrollbar-thumb{background:var(--lino);border-radius:4px}
+.d-thumb{width:100%;height:320px;overflow:hidden;border-radius:var(--r-xl) var(--r-xl) 0 0}
+.d-thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.d-body{padding:2.25rem}
+.d-type{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+.d-title{font-family:var(--bebas);font-size:2rem;letter-spacing:.03em;color:var(--carbon);margin-bottom:1.25rem}
+.d-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:1.5rem}
+.dl{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.dt{font-size:.87rem;color:var(--tierra);line-height:1.7}
+.d-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+.d-link{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:1.75rem;
+  font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--white);background:var(--carbon);
+  padding:.7rem 1.5rem;border-radius:var(--r-full);
+  text-decoration:none;transition:all .2s var(--ease);box-shadow:var(--sh-sm);
+}
+.d-link:hover{background:var(--tierra);transform:translateY(-1px);box-shadow:var(--sh-md)}
 
-    .sobre-left h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 52px);
-      font-weight: 300;
-      line-height: 1.15;
-      color: var(--ink);
-      margin-bottom: 32px;
-    }
-    .sobre-left h2 em { font-style: italic; color: var(--accent); }
-
-    .sobre-left p {
-      color: var(--mid);
-      margin-bottom: 20px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      margin-top: 40px;
-    }
-
-    .skill-item {
-      background: var(--white);
-      padding: 24px;
-    }
-
-    .skill-item h4 {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    .skill-item p {
-      font-size: 13px;
-      color: var(--mid);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    /* PROYECTOS */
-    #proyectos { background: var(--cream); }
-
-    .proyectos-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 60px;
-    }
-
-    .proyectos-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 52px);
-      font-weight: 300;
-      color: var(--ink);
-    }
-    .proyectos-header h2 em { font-style: italic; color: var(--accent); }
-
-    .proyecto-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-    }
-
-    .proyecto-card {
-      background: var(--white);
-      padding: 40px;
-      position: relative;
-      transition: background 0.25s;
-      cursor: pointer;
-    }
-    .proyecto-card:hover { background: #F0EDE8; }
-
-    .proyecto-tag {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
-    .proyecto-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-
-    .proyecto-card p {
-      font-size: 13px;
-      color: var(--mid);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .proyecto-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .tool-tag {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mid);
-      border: 1px solid var(--line);
-      padding: 4px 10px;
-    }
-
-    .proyecto-link {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 2px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: color 0.2s;
-    }
-    .proyecto-link:hover { color: var(--accent); border-color: var(--accent); }
-
-    .confidencial-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mid);
-      background: var(--cream);
-      padding: 6px 12px;
-      border: 1px solid var(--line);
-    }
-
-    /* SERVICIOS */
-    #servicios {
-      background: var(--ink);
-      color: var(--cream);
-    }
-
-    #servicios .section-label { color: #A89478; }
-    #servicios .section-label::after { background: #3a3a38; }
-
-    #servicios h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 52px);
-      font-weight: 300;
-      color: var(--cream);
-      margin-bottom: 60px;
-    }
-    #servicios h2 em { font-style: italic; color: #A89478; }
-
-    .servicios-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: #2a2a28;
-    }
-
-    .servicio-item {
-      background: var(--ink);
-      padding: 40px 32px;
-      border-top: 1px solid #2a2a28;
-      transition: background 0.2s;
-    }
-    .servicio-item:hover { background: #222220; }
-
-    .servicio-num {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: #A89478;
-      margin-bottom: 20px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .servicio-item h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--cream);
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-
-    .servicio-item p {
-      font-size: 13px;
-      color: #8a8a88;
-      line-height: 1.7;
-    }
-
-    /* CONTACTO */
-    #contacto {
-      background: var(--cream);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .contacto-left h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 5vw, 64px);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--ink);
-      margin-bottom: 24px;
-    }
-    .contacto-left h2 em { font-style: italic; color: var(--accent); }
-
-    .contacto-left p {
-      color: var(--mid);
-      margin-bottom: 40px;
-    }
-
-    .contacto-links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .contacto-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
-      color: var(--ink);
-      padding: 20px 24px;
-      background: var(--white);
-      border: 1px solid var(--line);
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .contacto-link:hover { border-color: var(--accent); background: #FBF9F6; }
-
-    .contacto-link-label {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .contacto-link-value {
-      font-size: 14px;
-      color: var(--ink);
-    }
-
-    .cv-download {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
-      color: var(--cream);
-      padding: 20px 32px;
-      background: var(--ink);
-      border: 1px solid var(--ink);
-      transition: background 0.2s;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-    .cv-download:hover { background: #2e2e2c; }
-
-    /* FOOTER */
-    footer {
-      padding: 32px 60px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    footer p {
-      font-size: 12px;
-      color: var(--mid);
-    }
-
-    /* PASSWORD MODAL */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(28,28,26,0.7);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal {
-      background: var(--white);
-      padding: 48px;
-      max-width: 400px;
-      width: 90%;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px; right: 20px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: var(--mid);
-      line-height: 1;
-    }
-
-    .modal h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      font-weight: 400;
-      margin-bottom: 8px;
-      color: var(--ink);
-    }
-
-    .modal p {
-      font-size: 13px;
-      color: var(--mid);
-      margin-bottom: 28px;
-    }
-
-    .modal input {
-      width: 100%;
-      border: 1px solid var(--line);
-      background: var(--cream);
-      padding: 14px 16px;
-      font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      color: var(--ink);
-      outline: none;
-      margin-bottom: 16px;
-      transition: border-color 0.2s;
-    }
-    .modal input:focus { border-color: var(--accent); }
-
-    .modal button.submit {
-      width: 100%;
-      background: var(--ink);
-      color: var(--cream);
-      border: none;
-      padding: 14px;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s;
-      font-family: 'Inter', sans-serif;
-    }
-    .modal button.submit:hover { background: #2e2e2c; }
-
-    .modal-error {
-      font-size: 12px;
-      color: #B85450;
-      margin-top: 10px;
-      display: none;
-    }
-    .modal-error.show { display: block; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      nav .nav-links { display: none; }
-      section { padding: 80px 24px; }
-      #hero { padding: 0 24px 60px; }
-      .hero-scroll { display: none; }
-      #sobre, #contacto { grid-template-columns: 1fr; gap: 48px; }
-      .proyecto-grid { grid-template-columns: 1fr; }
-      .servicios-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 12px; text-align: center; }
-    }
-  </style>
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .pc.wide{grid-column:span 2}
+}
+@media(max-width:768px){
+  nav{padding:.5rem .5rem .5rem 1.25rem;width:calc(100vw - 1.5rem)}
+  .nav-links{display:none}
+  .hero{padding:0 1.5rem 3rem}
+  .hero-top{left:1.5rem;right:1.5rem}
+  .hero-name{font-size:clamp(4rem,18vw,8rem)}
+  .hero-bottom{flex-direction:column;gap:1rem;align-items:flex-start}
+  .hero-chips{justify-content:flex-start}
+  .sec{padding:4rem 1.5rem}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:1fr}
+  .pc.wide,.pc.tall{grid-column:span 1;grid-row:span 1}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .contact-inner{flex-direction:column;align-items:flex-start}
+  .c-links{align-items:flex-start}
+  footer{flex-direction:column;gap:.5rem;text-align:center}
+  .d-grid{grid-template-columns:1fr}
+  .tools{padding:.9rem 1.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .marquee-track{animation:none}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">Claudia Oré</a>
+<!-- NAV glass pill -->
+<nav>
+  <a href="#" class="nav-logo">CO</a>
   <ul class="nav-links">
-    <li><a href="#sobre">Sobre mí</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
   </ul>
+  <a href="#contacto" class="nav-cta">Contacto</a>
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <p class="hero-eyebrow">Comunicadora Audiovisual · Lima, Perú</p>
-  <h1 class="hero-name">Claudia<br><em>Oré Bautista</em></h1>
-  <p class="hero-desc">
-    Edición de video, producción audiovisual e inteligencia artificial aplicada al contenido.
-    Trabajo con marcas e infoproductores para convertir ideas en piezas que venden.
-  </p>
-  <a href="#proyectos" class="hero-cta">
-    Ver proyectos
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-  <div class="hero-scroll">Scroll</div>
-</section>
-
-<!-- SOBRE MÍ -->
-<section id="sobre">
-  <div class="sobre-left">
-    <div class="section-label">Sobre mí</div>
-    <h2>Imagen que <em>comunica,</em><br>resultado que convierte</h2>
-    <p>Soy comunicadora audiovisual, bachiller por Toulouse Lautrec (2026), con experiencia en producción, edición de video y generación de contenido con IA.</p>
-    <p>En el último año he trabajado con emprendimientos y marcas en EE.UU. y Latinoamérica, especializándome en VSL para infoproductores y contenido visual generado con inteligencia artificial.</p>
-    <p>Hablo inglés avanzado y gestiono proyectos de forma remota con equipos internacionales.</p>
+<section class="hero">
+  <div class="hero-top">
+    <span class="hero-avail">Disponible para proyectos</span>
+    <span class="hero-meta">Lima, Perú<br>claudiaore.info@gmail.com</span>
   </div>
-  <div class="sobre-right">
-    <div class="skills-grid">
-      <div class="skill-item">
-        <h4>Edición de video</h4>
-        <p>Premiere Pro · After Effects · DaVinci Resolve · CapCut</p>
-      </div>
-      <div class="skill-item">
-        <h4>Motion & Color</h4>
-        <p>Corrección de color · Motion graphics · Animación 2D</p>
-      </div>
-      <div class="skill-item">
-        <h4>IA & Generación</h4>
-        <p>HeyGen · Runway · Kling · MidJourney · Veo · Higgsfield</p>
-      </div>
-      <div class="skill-item">
-        <h4>Diseño</h4>
-        <p>Illustrator · Photoshop · Canva · Identidad visual</p>
-      </div>
-      <div class="skill-item">
-        <h4>Producción</h4>
-        <p>Dirección · Fotografía · Iluminación · Sonido</p>
-      </div>
-      <div class="skill-item">
-        <h4>Estrategia</h4>
-        <p>Meta Ads · Redes sociales · Storytelling · UGC</p>
-      </div>
+  <div class="hero-name">
+    <span>CLAUDIA</span>
+    <span class="outline">ORÉ</span>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-desc">Comunicadora Audiovisual. Edición de video, diseño gráfico y contenido con IA para marcas en Latinoamérica y EE.UU.</p>
+    <div class="hero-chips">
+      <span class="chip on">Edición de Video</span>
+      <span class="chip on">Diseño Gráfico</span>
+      <span class="chip on">Contenido con IA</span>
+      <span class="chip">Motion Graphics</span>
+      <span class="chip">Fotografía</span>
     </div>
   </div>
 </section>
 
-<!-- PROYECTOS -->
-<section id="proyectos">
-  <div class="section-label">Proyectos</div>
-  <div class="proyectos-header">
-    <h2>Trabajo <em>seleccionado</em></h2>
-  </div>
-  <div class="proyecto-grid">
-
-    <div class="proyecto-card">
-      <p class="proyecto-tag">VSL · Infoproducto · España</p>
-      <h3>La Llamativa</h3>
-      <p>Edición de videos de venta para infoproductores. Narrativa visual orientada a conversión, motion graphics y postproducción completa.</p>
-      <div class="proyecto-tools">
-        <span class="tool-tag">Premiere Pro</span>
-        <span class="tool-tag">After Effects</span>
-        <span class="tool-tag">VSL</span>
-      </div>
-      <span class="confidencial-badge">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1"/></svg>
-        Disponible bajo solicitud
-      </span>
-    </div>
-
-    <div class="proyecto-card">
-      <p class="proyecto-tag">Video con IA · Comercial</p>
-      <h3>Cliente en Boston, USA</h3>
-      <p>Producción de imágenes y videos comerciales con IA generativa. Prompt engineering avanzado, workflows automatizados y postproducción en DaVinci.</p>
-      <div class="proyecto-tools">
-        <span class="tool-tag">DaVinci Resolve</span>
-        <span class="tool-tag">HeyGen</span>
-        <span class="tool-tag">Runway</span>
-        <span class="tool-tag">IA generativa</span>
-      </div>
-      <span class="confidencial-badge">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1"/></svg>
-        Disponible bajo solicitud
-      </span>
-    </div>
-
-    <div class="proyecto-card">
-      <p class="proyecto-tag">Transmedia · Documental</p>
-      <h3>Agachaditos</h3>
-      <p>Proyecto transmedia sobre comida callejera peruana. Lideré producción, presupuesto, grabación y distribución digital. +57,000 views en TikTok y +1,000 seguidores en IG en menos de una semana.</p>
-      <div class="proyecto-tools">
-        <span class="tool-tag">Premiere Pro</span>
-        <span class="tool-tag">After Effects</span>
-        <span class="tool-tag">Instagram</span>
-        <span class="tool-tag">TikTok</span>
-      </div>
-      <a href="https://www.behance.net/claudiaor" target="_blank" class="proyecto-link">
-        Ver en Behance
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </a>
-    </div>
-
-    <div class="proyecto-card">
-      <p class="proyecto-tag">Diseño · Identidad visual</p>
-      <h3>El Charrúa</h3>
-      <p>Diseño de piezas gráficas para restaurante uruguayo: menú, vales de consumo y comunicación de marca alineada con la identidad del local.</p>
-      <div class="proyecto-tools">
-        <span class="tool-tag">Illustrator</span>
-        <span class="tool-tag">Photoshop</span>
-        <span class="tool-tag">Identidad visual</span>
-      </div>
-      <a href="https://www.behance.net/claudiaor" target="_blank" class="proyecto-link">
-        Ver en Behance
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section id="servicios">
-  <div class="section-label">Servicios</div>
-  <h2>Lo que <em>ofrezco</em></h2>
-  <div class="servicios-grid">
-
-    <div class="servicio-item">
-      <p class="servicio-num">01</p>
-      <h3>Edición de Video VSL</h3>
-      <p>Videos de venta (VSL) para infoproductores y lanzamientos digitales. Montaje, color, motion graphics y storytelling orientado a conversión.</p>
-    </div>
-
-    <div class="servicio-item">
-      <p class="servicio-num">02</p>
-      <h3>Contenido con IA</h3>
-      <p>Generación de imágenes y video comercial con herramientas de IA generativa. Prompt engineering estratégico según el brief del proyecto.</p>
-    </div>
-
-    <div class="servicio-item">
-      <p class="servicio-num">03</p>
-      <h3>Producción Audiovisual</h3>
-      <p>Dirección, grabación y postproducción completa. Corrección de color profesional en DaVinci Resolve o Premiere Pro.</p>
-    </div>
-
-    <div class="servicio-item">
-      <p class="servicio-num">04</p>
-      <h3>Motion Graphics</h3>
-      <p>Animaciones, intros, subtítulos animados y elementos gráficos en After Effects para potenciar cualquier pieza audiovisual.</p>
-    </div>
-
-    <div class="servicio-item">
-      <p class="servicio-num">05</p>
-      <h3>Diseño Gráfico</h3>
-      <p>Piezas gráficas para redes sociales, identidad visual, materiales de marca y contenido para campañas digitales.</p>
-    </div>
-
-    <div class="servicio-item">
-      <p class="servicio-num">06</p>
-      <h3>UGC & Contenido Social</h3>
-      <p>Contenido profesional para Instagram, TikTok y Meta Ads. Estrategia visual alineada con objetivos de crecimiento y conversión.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONTACTO -->
-<section id="contacto">
-  <div class="contacto-left">
-    <div class="section-label">Contacto</div>
-    <h2>Trabajemos <em>juntos</em></h2>
-    <p>¿Tienes un proyecto en mente? Escríbeme y conversamos sobre cómo puedo ayudarte.</p>
-    <div class="contacto-links">
-      <a href="mailto:claudiaore.info@gmail.com" class="contacto-link">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="1" stroke="#8B7355" stroke-width="1.2"/><path d="M2 5l7 5 7-5" stroke="#8B7355" stroke-width="1.2"/></svg>
-        <div>
-          <span class="contacto-link-label">Email</span>
-          <span class="contacto-link-value">claudiaore.info@gmail.com</span>
-        </div>
-      </a>
-      <a href="tel:+51960446424" class="contacto-link">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 2h3l1.5 4-2 1.2c.9 1.9 2.3 3.3 4.2 4.2L13 9.5l4 1.5v3c0 1.1-.9 2-2 2C7.2 16 2 10.8 2 4c0-1.1.9-2 2-2h1z" stroke="#8B7355" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        <div>
-          <span class="contacto-link-label">WhatsApp / Teléfono</span>
-          <span class="contacto-link-value">(+51) 960 446 424</span>
-        </div>
-      </a>
-      <a href="https://www.behance.net/claudiaor" target="_blank" class="contacto-link">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="6" height="10" rx="1" stroke="#8B7355" stroke-width="1.2"/><rect x="10" y="4" width="6" height="10" rx="1" stroke="#8B7355" stroke-width="1.2"/></svg>
-        <div>
-          <span class="contacto-link-label">Portafolio</span>
-          <span class="contacto-link-value">behance.net/claudiaor</span>
-        </div>
-      </a>
-      <a href="ClaudiaOre_CV2026.pdf" download class="cv-download">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M3 12h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Descargar CV
-      </a>
-    </div>
-  </div>
-  <div class="contacto-right">
-    <!-- espacio visual -->
-    <div style="border: 1px solid var(--line); padding: 48px; background: var(--white);">
-      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--ink); line-height:1.5; margin-bottom:24px; font-style:italic;">
-        "Traduzco objetivos en contenido visual sin sacrificar calidad creativa."
-      </p>
-      <p style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);">Claudia Oré Bautista</p>
-      <p style="font-size:12px; color:var(--mid);">Lima, Perú · Disponible para trabajo remoto</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Claudia Oré Bautista</p>
-  <p>Lima, Perú · Disponible para proyectos remotos</p>
-</footer>
-
-<!-- MODAL CONTRASEÑA -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <h3>Proyecto protegido</h3>
-    <p>Este trabajo tiene acuerdo de confidencialidad. Escríbeme y te envío la contraseña de acceso.</p>
-    <input type="password" id="passwordInput" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPassword()" />
-    <button class="submit" onclick="checkPassword()">Acceder</button>
-    <p class="modal-error" id="modalError">Contraseña incorrecta. Contáctame para solicitarla.</p>
+<!-- MARQUEE animado -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <!-- repetido 2x para loop -->
+    <div class="marquee-item">EDICIÓN DE VIDEO <span>✦</span></div>
+    <div class="marquee-item">DISEÑO GRÁFICO <span>✦</span></div>
+    <div class="marquee-item">CONTENIDO CON IA <span>✦</span></div>
+    <div class="marquee-item">MOTION GRAPHICS <span>✦</span></div>
+    <div class="marquee-item">FOTOGRAFÍA <span>✦</span></div>
+    <div class="marquee-item">PRODUCCIÓN AUDIOVISUAL <span>✦</span></div>
+    <div class="marquee-item">COLOR GRADING <span>✦</span></div>
+    <div class="marquee-item">VFX & COMPOSITING <span>✦</span></div>
+    <div class="marquee-item">EDICIÓN DE VIDEO <span>✦</span></div>
+    <div class="marquee-item">DISEÑO GRÁFICO <span>✦</span></div>
+    <div class="marquee-item">CONTENIDO CON IA <span>✦</span></div>
+    <div class="marquee-item">MOTION GRAPHICS <span>✦</span></div>
+    <div class="marquee-item">FOTOGRAFÍA <span>✦</span></div>
+    <div class="marquee-item">PRODUCCIÓN AUDIOVISUAL <span>✦</span></div>
+    <div class="marquee-item">COLOR GRADING <span>✦</span></div>
+    <div class="marquee-item">VFX & COMPOSITING <span>✦</span></div>
   </div>
 </div>
 
+<!-- TOOLS -->
+<div class="tools">
+  <span class="tl">Software</span>
+  <div class="ti"><div class="tic" style="background:#2B3590">Pr</div><span class="tin">Premiere</span></div>
+  <div class="ti"><div class="tic" style="background:#9999FF">Ae</div><span class="tin">After Effects</span></div>
+  <div class="ti"><div class="tic" style="background:#FF7C00">Ai</div><span class="tin">Illustrator</span></div>
+  <div class="ti"><div class="tic" style="background:#001E36">Ps</div><span class="tin">Photoshop</span></div>
+  <div class="ti"><div class="tic" style="background:#4A90E2">Lr</div><span class="tin">Lightroom</span></div>
+  <div class="ti"><div class="tic" style="background:#1E4D78">Au</div><span class="tin">Audition</span></div>
+  <div class="ti"><div class="tic" style="background:#1A1A1A">Da</div><span class="tin">DaVinci</span></div>
+  <div class="ti"><div class="tic" style="background:#00C4CC">Cv</div><span class="tin">Canva</span></div>
+  <div class="ti"><div class="tic" style="background:#111">Cc</div><span class="tin">CapCut</span></div>
+  <span class="tl" style="padding-left:1.5rem;border-left:1px solid rgba(255,255,255,.07);border-right:none">IA Generativa</span>
+  <div class="ti"><div class="tic" style="background:#B8914A">Cl</div><span class="tin">Claude</span></div>
+  <div class="ti"><div class="tic" style="background:#10a37f">GP</div><span class="tin">ChatGPT</span></div>
+  <div class="ti"><div class="tic" style="background:#4285F4">Gm</div><span class="tin">Gemini</span></div>
+  <div class="ti"><div class="tic" style="background:#5200FF">Mj</div><span class="tin">Midjourney</span></div>
+  <div class="ti"><div class="tic" style="background:#E8344E">Rw</div><span class="tin">Runway</span></div>
+  <div class="ti"><div class="tic" style="background:#1A1A2E">Hy</div><span class="tin">HeyGen</span></div>
+  <div class="ti"><div class="tic" style="background:#2C6E49">Kl</div><span class="tin">Kling</span></div>
+</div>
+
+<!-- STATS -->
+<div class="sec" style="padding-bottom:0">
+  <div class="stats-row">
+    <div class="sc"><div class="sn">10+</div><div class="sl2">Proyectos en Behance</div></div>
+    <div class="sc"><div class="sn">3</div><div class="sl2">Países con clientes</div></div>
+    <div class="sc"><div class="sn">57K</div><div class="sl2">Views orgánicas en TikTok</div></div>
+    <div class="sc"><div class="sn">2026</div><div class="sl2">Bachiller Toulouse Lautrec</div></div>
+  </div>
+</div>
+
+<!-- PORTFOLIO – thumbnails full con título encima -->
+<section class="sec portfolio-sec" id="proyectos">
+  <p class="sl">Trabajos seleccionados</p>
+  <h2 class="st">Proyectos</h2>
+  <div class="sr"></div>
+  <div class="pgrid">
+
+    <div class="pc wide" onclick="openD('p1')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/eb2ed0236590587.Y3JvcCwxNDAwLDEwOTUsMCw1MDI.jpg" alt="Yichang" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">01</div>
+          <div class="ptype-label">Diseño Gráfico</div>
+          <div class="ptitle">Yichang</div>
+          <div class="ptags"><span class="ptag">Illustrator</span><span class="ptag">Identidad</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc" onclick="openD('p2')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/894072236591149.Y3JvcCwyODc2LDIyNTAsNTYyLDA.jpg" alt="EGEP" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">02</div>
+          <div class="ptype-label">Branding</div>
+          <div class="ptitle">EGEP — Manual de Marca</div>
+          <div class="ptags"><span class="ptag">Branding</span><span class="ptag">Illustrator</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc" onclick="openD('p3')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/927000236591929.Y3JvcCwzMzIzLDI1OTksMCw5OTU.jpg" alt="Foto" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">03</div>
+          <div class="ptype-label">Fotografía</div>
+          <div class="ptitle">Edición de Foto</div>
+          <div class="ptags"><span class="ptag">Photoshop</span><span class="ptag">Lightroom</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc wide" onclick="openD('p4')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/dcdc46236591465.68f0414d09e37.png" alt="Da Igual" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">04</div>
+          <div class="ptype-label">Video · Dirección · Color</div>
+          <div class="ptitle">Da Igual — Video Clip</div>
+          <div class="ptags"><span class="ptag">Premiere</span><span class="ptag">After Effects</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc" onclick="openD('p5')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/40f147236714147.Y3JvcCw5MDcsNzEwLDExMiww.png" alt="Fashion Spot" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">05</div>
+          <div class="ptype-label">Editorial</div>
+          <div class="ptitle">Fashion Spot</div>
+          <div class="ptags"><span class="ptag">InDesign</span><span class="ptag">Moda</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc" onclick="openD('p6')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/40b570236718775.Y3JvcCw5MDIsNzA2LDIwNSww.png" alt="Motion" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">06</div>
+          <div class="ptype-label">Motion Graphics</div>
+          <div class="ptitle">Motion Graphics</div>
+          <div class="ptags"><span class="ptag">After Effects</span><span class="ptag">Animación</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc wide" onclick="reqPw('p7')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/654e49236717019.Y3JvcCw2ODEsNTMyLDMyMCwxMzQ.png" alt="Heretic" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">07</div>
+          <span class="lock-pill">🔒 NDA</span>
+          <div class="ptype-label">Video · Audio · Post</div>
+          <div class="ptitle">Heretic — Post-producción</div>
+          <div class="ptags"><span class="ptag">Premiere</span><span class="ptag">Audition</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc" onclick="openD('p8')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/abb72e236590811.Y3JvcCwyNjg0LDIxMDAsNTksMA.png" alt="El Duelo" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">08</div>
+          <div class="ptype-label">TV en Vivo</div>
+          <div class="ptitle">El Duelo</div>
+          <div class="ptags"><span class="ptag">Switcher</span><span class="ptag">Live</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc" onclick="reqPw('p9')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/c8b7a1236725791.Y3JvcCw4MDksNjMzLDIxMiww.png" alt="Nuke" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">09</div>
+          <span class="lock-pill">🔒 NDA</span>
+          <div class="ptype-label">VFX · Compositing</div>
+          <div class="ptitle">Nuke — Matte Painting</div>
+          <div class="ptags"><span class="ptag">Nuke</span><span class="ptag">VFX</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc wide" onclick="openD('p10')">
+      <div class="pthumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/78c54b236719803.Y3JvcCw5MTEsNzEzLDE4MCww.png" alt="Performance" loading="lazy">
+        <div class="poverlay">
+          <div class="pnum-badge">10</div>
+          <div class="ptype-label">Video · Experimental</div>
+          <div class="ptitle">Video Performance</div>
+          <div class="ptags"><span class="ptag">Premiere</span><span class="ptag">After Effects</span><span class="ptag">Experimental</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="sec" id="experiencia">
+  <p class="sl">Trayectoria</p>
+  <h2 class="st">Experiencia</h2>
+  <div class="sr"></div>
+  <div class="exp-list">
+    <div class="ec">
+      <div class="ec-head">
+        <div><div class="ec-role">Editora de Video VSL</div><div class="ec-co">La Llamativa · España (Remoto)</div></div>
+        <span class="ec-date">Jul. 2026 – Actualidad</span>
+      </div>
+      <ul class="ec-list">
+        <li>Edición de videos de venta (VSL) para infoproductores, optimizando la narrativa visual para maximizar conversiones.</li>
+        <li>Montaje, corrección de color y postproducción en Premiere Pro y After Effects.</li>
+        <li>Interpretación de scripts y briefs para trasladar la estrategia comercial al lenguaje audiovisual.</li>
+      </ul>
+    </div>
+    <div class="ec">
+      <div class="ec-head">
+        <div><div class="ec-role">Editora de Video con IA (Freelance)</div><div class="ec-co">Cliente en Boston, USA · Remoto · Confidencial</div></div>
+        <span class="ec-date">2025 – 2026</span>
+      </div>
+      <ul class="ec-list">
+        <li>Generación de imágenes y videos comerciales con HeyGen, Runway, Kling y Midjourney mediante prompt engineering.</li>
+        <li>Edición y corrección de color en DaVinci Resolve. Diseño e implementación de workflows automatizados con IA.</li>
+      </ul>
+    </div>
+    <div class="ec">
+      <div class="ec-head">
+        <div><div class="ec-role">Diseñadora Freelance</div><div class="ec-co">El Charrúa (Restaurante Uruguayo) · La Molina</div></div>
+        <span class="ec-date">2024 – 2025</span>
+      </div>
+      <ul class="ec-list">
+        <li>Diseño de menú, reservas y vales de consumo alineados con la identidad visual del restaurante.</li>
+      </ul>
+    </div>
+    <div class="ec">
+      <div class="ec-head">
+        <div><div class="ec-role">Diseñadora Gráfica (Prácticas)</div><div class="ec-co">EGEP · Lima</div></div>
+        <span class="ec-date">Mar. 2024</span>
+      </div>
+      <ul class="ec-list">
+        <li>Manual de marca completo para escuela de jóvenes emprendedores: logotipo, paleta, tipografías, mockups y patrones.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ + SKILLS con pills por categoría -->
+<section class="sec" id="sobre-mi" style="background:var(--cream)">
+  <p class="sl">Quién soy</p>
+  <h2 class="st">Sobre mí</h2>
+  <div class="sr"></div>
+  <div class="about-grid">
+    <div>
+      <p class="about-big">Creo contenido que<br><em>tiene criterio</em> —<br>no solo piezas sueltas.</p>
+      <p class="about-p">Bachiller en Comunicación Audiovisual y Multimedia (Toulouse Lautrec, 2026). Experiencia en generación de contenido con IA y prompt engineering. He trabajado con emprendimientos en EE.UU. creando imágenes, video y UGC mediante herramientas avanzadas de IA.</p>
+      <p class="about-p">Inglés avanzado — capacidad para redacción y comunicación con clientes internacionales.</p>
+      <a href="https://www.behance.net/claudiaor" target="_blank" class="about-btn">Ver Behance completo ↗</a>
+    </div>
+    <div class="skill-groups">
+      <div>
+        <div class="sg-title">Producción Audiovisual</div>
+        <div class="sg-pills">
+          <span class="sg-pill">Grabación y sonido</span>
+          <span class="sg-pill">Edición y montaje</span>
+          <span class="sg-pill">Color grading</span>
+          <span class="sg-pill">Animación 2D</span>
+          <span class="sg-pill">Motion graphics</span>
+          <span class="sg-pill">Presupuestos</span>
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Diseño y Comunicación</div>
+        <div class="sg-pills">
+          <span class="sg-pill">Diseño gráfico</span>
+          <span class="sg-pill">Fotografía</span>
+          <span class="sg-pill">Storytelling</span>
+          <span class="sg-pill">Redes sociales</span>
+          <span class="sg-pill">Meta Ads</span>
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">IA & Automatización</div>
+        <div class="sg-pills">
+          <span class="sg-pill gold">Prompt engineering</span>
+          <span class="sg-pill gold">Claude · ChatGPT</span>
+          <span class="sg-pill gold">Midjourney</span>
+          <span class="sg-pill gold">Runway · HeyGen</span>
+          <span class="sg-pill gold">Kling · Veo</span>
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Idiomas</div>
+        <div class="sg-pills">
+          <span class="sg-pill">Español nativo</span>
+          <span class="sg-pill">Inglés avanzado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT dark con glass buttons -->
+<section class="sec contact-sec" id="contacto">
+  <p class="sl">Trabajemos juntos</p>
+  <h2 class="st">Contacto</h2>
+  <div class="sr"></div>
+  <div class="contact-inner">
+    <div class="c-big">
+      <a href="mailto:claudiaore.info@gmail.com">claudiaore<br>.info@gmail.com</a>
+    </div>
+    <div class="c-links">
+      <a href="tel:+51960446424" class="c-btn">+51 960 446 424</a>
+      <a href="https://www.behance.net/claudiaor" target="_blank" class="c-btn">Behance ↗</a>
+      <a href="https://linkedin.com/in/claudiaore" target="_blank" class="c-btn">LinkedIn ↗</a>
+      <a href="#" class="c-btn">Instagram ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="fn">CLAUDIA ORÉ</span>
+  <span class="fc">© 2026 · Lima, Perú · Comunicadora Audiovisual · Toulouse Lautrec</span>
+</footer>
+
+<!-- MODAL CONTRASEÑA glass -->
+<div class="overlay" id="pwO" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="pw-box">
+    <button class="pw-close" onclick="document.getElementById('pwO').classList.remove('open')">✕</button>
+    <div class="pw-title">PROYECTO RESTRINGIDO</div>
+    <p class="pw-sub">Este proyecto está protegido por NDA. Ingresa la contraseña o contáctame directamente.</p>
+    <input class="pw-input" type="password" id="pwI" placeholder="••••••••" onkeydown="if(event.key==='Enter')chkPw()">
+    <button class="pw-btn" onclick="chkPw()">Acceder</button>
+    <p class="pw-err" id="pwE">Contraseña incorrecta. Escríbeme a claudiaore.info@gmail.com</p>
+  </div>
+</div>
+
+<!-- MODAL DETALLE -->
+<div class="overlay" id="dO" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="db" id="dB"></div>
+</div>
+
 <script>
-  // Nav scroll
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // Modal
-  let currentPassword = '';
-  const passwords = {
-    'vsl-llamativa': 'llamativa2026',
-    'ai-boston': 'boston2026',
-  };
-  let currentProject = '';
-
-  function openModal(project) {
-    currentProject = project;
-    document.getElementById('modalOverlay').classList.add('active');
-    document.getElementById('passwordInput').value = '';
-    document.getElementById('modalError').classList.remove('show');
-    setTimeout(() => document.getElementById('passwordInput').focus(), 100);
-  }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-  }
-
-  function checkPassword() {
-    const val = document.getElementById('passwordInput').value;
-    if (val === passwords[currentProject]) {
-      closeModal();
-      alert('✓ Acceso concedido. En una web real, aquí abriría el video protegido.');
-    } else {
-      document.getElementById('modalError').classList.add('show');
-      document.getElementById('passwordInput').value = '';
-    }
-  }
-
-  document.getElementById('modalOverlay').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closeModal();
-  });
-
-  // Hacer que las tarjetas confidenciales abran el modal
-  document.querySelectorAll('.confidencial-badge').forEach((badge, i) => {
-    const projects = ['vsl-llamativa', 'ai-boston'];
-    badge.style.cursor = 'pointer';
-    badge.addEventListener('click', () => openModal(projects[i]));
-  });
+const PW='claudia2026'; // ← Cambia antes de publicar
+let pid=null;
+const P={
+  p1:{type:'Diseño Gráfico',title:'Yichang',img:'https://mir-s3-cdn-cf.behance.net/projects/404/eb2ed0236590587.Y3JvcCwxNDAwLDEwOTUsMCw1MDI.jpg',ch:'Proyecto de diseño gráfico con enfoque en composición editorial e identidad visual.',sol:'Piezas gráficas con paleta cromática definida, tipografía jerarquizada y composición que guía la lectura del espectador.',tools:['Illustrator','Photoshop'],url:'https://www.behance.net/gallery/236590587/Yichang',lock:false},
+  p2:{type:'Branding · Manual de Marca',title:'EGEP — Manual de Marca',img:'https://mir-s3-cdn-cf.behance.net/projects/404/894072236591149.Y3JvcCwyODc2LDIyNTAsNTYyLDA.jpg',ch:'La organización necesitaba unificar su comunicación visual con lineamientos claros y replicables por todo el equipo.',sol:'Manual completo: paleta HEX, tipografías, reglas de uso del logo, mockups, patrones gráficos y guía para redes sociales.',tools:['Illustrator','Canva'],url:'https://www.behance.net/gallery/236591149/EGEP-Manual-de-Marca',lock:false},
+  p3:{type:'Fotografía · Retoque',title:'Edición de Foto',img:'https://mir-s3-cdn-cf.behance.net/projects/404/927000236591929.Y3JvcCwzMzIzLDI1OTksMCw5OTU.jpg',ch:'Fotografías que necesitaban tratamiento de color, retoque y composición para uso en comunicaciones digitales.',sol:'Flujo en Lightroom y Photoshop: corrección de color, retoque, ajuste de composición y exportación optimizada para web y redes.',tools:['Photoshop','Lightroom'],url:'https://www.behance.net/gallery/236591929/Edicion-de-Foto',lock:false},
+  p4:{type:'Video · Dirección · Color',title:'Da Igual — Video Clip',img:'https://mir-s3-cdn-cf.behance.net/projects/404/dcdc46236591465.68f0414d09e37.png',ch:'Videoclip musical que requería una estética visual emotiva y coherente con la narrativa de la canción.',sol:'Edición no lineal y color grading en Premiere. Paleta fría con transiciones rítmicas sincronizadas con la música.',tools:['Premiere Pro','After Effects'],url:'https://www.behance.net/gallery/236591465/Da-Igual-Video-Clip',lock:false},
+  p5:{type:'Diseño · Editorial',title:'Fashion Spot',img:'https://mir-s3-cdn-cf.behance.net/projects/404/40f147236714147.Y3JvcCw5MDcsNzEwLDExMiww.png',ch:'Publicación editorial de moda que requería criterio tipográfico y compositivo de nivel profesional.',sol:'Layout con grid de 12 columnas, jerarquía tipográfica y selección fotográfica curada. Lista para impresión y digital.',tools:['InDesign','Illustrator'],url:'https://www.behance.net/gallery/236714147/Fashion-Spot',lock:false},
+  p6:{type:'Motion Graphics',title:'Motion Graphics',img:'https://mir-s3-cdn-cf.behance.net/projects/404/40b570236718775.Y3JvcCw5MDIsNzA2LDIwNSww.png',ch:'Piezas animadas para comunicación digital con estética consistente y fluidez visual.',sol:'Animaciones en After Effects con timing ajustado a cada plataforma. Exportación en MP4, GIF y fondo transparente.',tools:['After Effects','Illustrator'],url:'https://www.behance.net/gallery/236718775/Motion-Graphics',lock:false},
+  p7:{type:'Video · Audio · Post-producción',title:'Heretic — Post-producción',img:'https://mir-s3-cdn-cf.behance.net/projects/404/654e49236717019.Y3JvcCw2ODEsNTMyLDMyMCwxMzQ.png',ch:'Post-producción integral con edición de imagen y tratamiento de audio en paralelo bajo NDA.',sol:'Edición no lineal con sincronización de audio, corrección de color y mezcla final. Resultado optimizado para distribución digital.',tools:['Premiere Pro','Audition'],url:'https://www.behance.net/gallery/236717019/Heretic',lock:true},
+  p8:{type:'TV en Vivo · Dirección de Cámara',title:'El Duelo — Programa de TV',img:'https://mir-s3-cdn-cf.behance.net/projects/404/abb72e236590811.Y3JvcCwyNjg0LDIxMDAsNTksMA.png',ch:'Programa de entretenimiento juvenil en vivo con competencias entre universidades. Requería coordinación técnica en tiempo real.',sol:'Directora de Cámara: manejo de switcher, coordinación con VR, sonido y gráficos en vivo. Motion graphics y piezas para el show.',tools:['Switcher','After Effects','Premiere'],url:'https://www.behance.net/gallery/236590811/El-Duelo',lock:false},
+  p9:{type:'VFX · Compositing',title:'Nuke — Matte Painting',img:'https://mir-s3-cdn-cf.behance.net/projects/404/c8b7a1236725791.Y3JvcCw4MDksNjMzLDIxMiww.png',ch:'Compositing de planos con matte painting para extender entornos en producción audiovisual bajo NDA.',sol:'Pipeline de VFX en Nuke: keying, tracking 2D y matte painting digital. Match de iluminación e integración final.',tools:['Nuke','Photoshop'],url:'https://www.behance.net/gallery/236725791/Nuke-Matte-Painting',lock:true},
+  p10:{type:'Video · Experimental',title:'Video Performance',img:'https://mir-s3-cdn-cf.behance.net/projects/404/78c54b236719803.Y3JvcCw5MTEsNzEzLDE4MCww.png',ch:'Proyecto experimental que documenta y reinterpreta una performance en vivo a través del lenguaje audiovisual.',sol:'Edición que combina tomas en tiempo real con motion graphics. Híbrido entre documental y pieza artística.',tools:['Premiere Pro','After Effects'],url:'https://www.behance.net/gallery/236719803/Video-Performance',lock:false},
+};
+function openD(id){const p=P[id];if(!p)return;rdD(p);document.getElementById('dO').classList.add('open')}
+function reqPw(id){pid=id;document.getElementById('pwI').value='';document.getElementById('pwE').classList.remove('show');document.getElementById('pwO').classList.add('open');setTimeout(()=>document.getElementById('pwI').focus(),100)}
+function chkPw(){if(document.getElementById('pwI').value===PW){document.getElementById('pwO').classList.remove('open');openD(pid)}else{document.getElementById('pwE').classList.add('show');document.getElementById('pwI').value='';document.getElementById('pwI').focus()}}
+function rdD(p){
+  const tags=p.tools.map(t=>`<span class="ptag" style="background:var(--cream);color:var(--tierra);border:1px solid var(--lino)">${t}</span>`).join('');
+  const lock=p.lock?'<span style="font-size:.6rem;background:rgba(0,0,0,.07);padding:.2rem .6rem;border-radius:999px;margin-left:.5rem">🔒 NDA</span>':'';
+  document.getElementById('dB').innerHTML=`
+    <button class="pw-close" style="top:1.25rem;right:1.5rem;z-index:10" onclick="document.getElementById('dO').classList.remove('open')">✕</button>
+    <div class="d-thumb"><img src="${p.img}" alt="${p.title}"></div>
+    <div class="d-body">
+      <div class="d-type">${p.type}${lock}</div>
+      <div class="d-title">${p.title}</div>
+      <div class="d-grid">
+        <div><div class="dl">El desafío</div><p class="dt">${p.ch}</p></div>
+        <div><div class="dl">La solución</div><p class="dt">${p.sol}</p></div>
+      </div>
+      <div class="dl">Herramientas</div>
+      <div class="d-tags">${tags}</div>
+      <a href="${p.url}" target="_blank" class="d-link">Ver en Behance ↗</a>
+    </div>`;
+}
 </script>
 </body>
 </html>
